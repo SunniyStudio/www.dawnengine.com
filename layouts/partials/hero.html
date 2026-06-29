@@ -33,5 +33,9 @@
       </div>
     </div>
   </div>
+
+  <a class="hero__scroll" href="#core" aria-label="{{ if eq $.Site.Language.Lang "zh" }}向下浏览{{ else }}Scroll down{{ end }}">
+    {{ partial "icon.html" (dict "name" "chevron-down") }}
+  </a>
 </section>
 {{- end -}}

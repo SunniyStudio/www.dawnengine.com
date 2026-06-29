@@ -1,7 +1,8 @@
 {{- /* Context: a feature Page */ -}}
 {{- $icon := .Params.icon | default "boxes" -}}
 {{- $desc := .Params.tagline | default .Description | default .Summary -}}
-<a class="fcard reveal" href="{{ .RelPermalink }}">
+{{- $accent := .Params.accent | default "#FFB347" -}}
+<a class="fcard reveal" href="{{ .RelPermalink }}" style="--card-accent: {{ $accent }};">
   <span class="fcard__icon">{{ partial "icon.html" (dict "name" $icon) }}</span>
   <h3 class="fcard__title">{{ .Title }}</h3>
   <p class="fcard__desc">{{ $desc | plainify | truncate 90 }}</p>

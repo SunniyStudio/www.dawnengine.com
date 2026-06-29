@@ -63,6 +63,52 @@
     flex-wrap: wrap;
     gap: var(--space-4);
   }
+
+  &__scroll {
+    position: absolute;
+    left: 50%;
+    bottom: var(--space-8);
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--c-border-strong);
+    color: var(--c-text-muted);
+    background: rgba(11, 11, 13, 0.4);
+    backdrop-filter: blur(6px);
+    animation: hero-bob 2s var(--ease) infinite;
+    transition:
+      color var(--dur) var(--ease),
+      border-color var(--dur) var(--ease);
+
+    &:hover {
+      color: var(--c-text);
+      border-color: var(--c-accent);
+    }
+
+    @media (max-width: $bp-md) {
+      display: none;
+    }
+  }
+}
+
+@keyframes hero-bob {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, 6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__scroll {
+    animation: none;
+  }
 }
 
 // Stat strip under hero
@@ -99,7 +145,11 @@
     font-family: var(--font-mono);
     font-size: clamp(1.5rem, 3vw, 2rem);
     font-weight: 700;
-    color: var(--c-text);
+    background: var(--c-accent-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    width: fit-content;
   }
 
   &__label {

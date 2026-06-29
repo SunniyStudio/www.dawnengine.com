@@ -20,7 +20,7 @@
 {{ end }}
 
 {{- /* Core features — bento grid */ -}}
-<section class="section">
+<section class="section" id="core">
   <div class="container container--wide">
     <div class="section-head section-head--center">
       <p class="eyebrow">{{ T "label_features" }}</p>
@@ -45,7 +45,7 @@
           {{ end }}
         </div>
         <div class="fblock__body">
-          <p class="eyebrow">{{ with $f.Params.tagline }}{{ . }}{{ end }}</p>
+          <p class="eyebrow"><span class="fblock__num">{{ printf "%02d" (add $i 1) }}</span>{{ with $f.Params.tagline }}{{ . }}{{ end }}</p>
           <h3 class="fblock__title">{{ $f.Title }}</h3>
           <p class="fblock__desc">{{ $f.Description | plainify }}</p>
           <div class="fblock__cta">
