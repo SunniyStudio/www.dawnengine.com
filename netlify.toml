@@ -1,0 +1,79 @@
+# ===========================================================================
+# Netlify 部署配置 · DawnEngine 官方站（Hugo Extended 多语言）
+# 文档参考：docs/06-deployment-ci.md（构建/版本锁定）、docs/05-china-cdn-performance.md（缓存/安全头）
+# 注意：面向国内的生产环境以「对象存储 + 国内 CDN」为主（见 docs/05/06）；
+#       本文件用于 Netlify（预览/海外/备用部署），与国内发布流程并行不冲突。
+# ===========================================================================
+
+[build]
+  publish = "public"
+  # 生产构建：压缩 + GC 清理未用缓存资源
+  command = "hugo --gc --minify"
+
+[build.environment]
+  # 版本锁定，避免「构建机器版本漂移」（docs 6.2）
+  HUGO_VERSION = "0.162.1"
+  # 启用 Hugo Extended（SCSS/图像处理依赖）
+  HUGO_ENV = "production"
+  # 用于从 git 推导 lastmod（hugo.toml enableGitInfo，CI 有完整历史时生效）
+  TZ = "Asia/Shanghai"
+
+# ---------------------------------------------------------------------------
+# 构建上下文：不同环境覆盖 baseURL
+# ---------------------------------------------------------------------------
+[context.production]
+  command = "hugo --gc --minify --baseURL \"https://www.dawnengine.com/\""
+
+# Deploy Preview（PR 预览）：使用 Netlify 提供的临时域名，避免链接错位
+[context.deploy-preview]
+  command = "hugo --gc --minify -b $DEPLOY_PRIME_URL"
+
+# 分支部署（如 develop -> staging 预览）
+[context.branch-deploy]
+  command = "hugo --gc --minify -b $DEPLOY_PRIME_URL"
+
+# ===========================================================================
+# 响应头：缓存策略（docs 5.3） + 安全头（docs 5.9）
+# ===========================================================================
+
+# 全站安全头
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    X-Frame-Options = "SAMEORIGIN"
+
+# HTML：短缓存 + 每次发布刷新（docs 5.3）
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# 指纹化静态资源（Hugo Pipes 输出带 hash）：长缓存 immutable
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# sitemap / robots：1 小时缓存（docs 5.3）
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
