@@ -1,0 +1,78 @@
+# UI strings · English
+
+[nav_features]
+other = "Features"
+[nav_ecosystem]
+other = "Ecosystem"
+[nav_learn]
+other = "Learn"
+[nav_community]
+other = "Community"
+[nav_roadmap]
+other = "Roadmap"
+[nav_news]
+other = "News"
+[nav_trial]
+other = "Request Trial"
+
+[cta_trial]
+other = "Request Trial"
+[cta_get_license]
+other = "Get a License"
+[cta_explore_features]
+other = "Explore Features"
+[cta_learn_more]
+other = "Learn More"
+[cta_get_started]
+other = "Get Started"
+[cta_contact_sales]
+other = "Contact Sales"
+[cta_read_more]
+other = "Read More"
+[cta_view_all]
+other = "View All"
+
+[label_features]
+other = "Core Features"
+[label_latest_news]
+other = "Latest News"
+[label_ecosystem]
+other = "Ecosystem"
+[label_related_features]
+other = "Related Features"
+[label_specs]
+other = "Specifications"
+[label_on_this_page]
+other = "On This Page"
+
+[news_category_release]
+other = "Release"
+[news_category_tutorial]
+other = "Tutorial"
+[news_category_community]
+other = "Community"
+[news_category_event]
+other = "Event"
+
+[footer_product]
+other = "Product"
+[footer_resources]
+other = "Resources"
+[footer_company]
+other = "Company"
+[footer_follow]
+other = "Follow Us"
+[footer_rights]
+other = "All rights reserved"
+
+[lang_switch]
+other = "Language"
+
+[search_placeholder]
+other = "Search docs…"
+
+[reading_time]
+other = "{{ .Count }} min read"
+
+[published_on]
+other = "Published on"

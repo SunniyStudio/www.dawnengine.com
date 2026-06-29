@@ -1,0 +1,16 @@
+{{ define "main" }}
+{{ partial "page-hero.html" . }}
+<div class="container">
+  <div class="doc{{ if .TableOfContents }} doc--toc{{ end }}">
+    <article class="prose">
+      {{ .Content }}
+    </article>
+    {{ if .TableOfContents }}
+    <aside class="toc">
+      <div class="toc__title">{{ T "label_on_this_page" }}</div>
+      {{ .TableOfContents }}
+    </aside>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

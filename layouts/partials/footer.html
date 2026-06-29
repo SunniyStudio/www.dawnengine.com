@@ -1,0 +1,56 @@
+{{- $p := .Site.Params -}}
+{{- $zh := eq .Site.Language.Lang "zh" -}}
+<footer class="footer">
+  <div class="container container--wide">
+    <div class="footer__top">
+      <div class="footer__brand-col">
+        <div class="footer__brand">
+          {{ partial "logo.html" (dict "class" "footer__logo") }}
+          <span>Dawn<span>Engine</span></span>
+        </div>
+        <p class="footer__tagline">
+          {{ if $zh }}基于 O3DE 二次开发的国产实时 3D 引擎。{{ else }}A real-time 3D engine built on O3DE.{{ end }}
+        </p>
+        <div class="footer__social">
+          {{ with $p.social.github }}<a href="{{ . }}" aria-label="GitHub" rel="noopener" target="_blank">{{ partial "icon.html" (dict "name" "github" "class" "icon--sm") }}</a>{{ end }}
+          {{ with $p.social.bilibili }}<a href="{{ . }}" aria-label="Bilibili" rel="noopener" target="_blank">{{ partial "icon.html" (dict "name" "monitor-play" "class" "icon--sm") }}</a>{{ end }}
+          {{ with $p.social.weibo }}<a href="{{ . }}" aria-label="Weibo" rel="noopener" target="_blank">{{ partial "icon.html" (dict "name" "rss" "class" "icon--sm") }}</a>{{ end }}
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <h4>{{ T "footer_product" }}</h4>
+        <ul role="list">
+          <li><a href="{{ "features" | relLangURL }}">{{ T "nav_features" }}</a></li>
+          <li><a href="{{ "ecosystem" | relLangURL }}">{{ T "nav_ecosystem" }}</a></li>
+          <li><a href="{{ "roadmap" | relLangURL }}">{{ T "nav_roadmap" }}</a></li>
+          <li><a href="{{ "trial" | relLangURL }}">{{ T "nav_trial" }}</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>{{ T "footer_resources" }}</h4>
+        <ul role="list">
+          <li><a href="{{ "learn" | relLangURL }}">{{ T "nav_learn" }}</a></li>
+          <li><a href="{{ "news" | relLangURL }}">{{ T "nav_news" }}</a></li>
+          <li><a href="{{ "community" | relLangURL }}">{{ T "nav_community" }}</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>{{ T "footer_company" }}</h4>
+        <ul role="list">
+          <li><a href="{{ "about" | relLangURL }}">{{ if $zh }}关于我们{{ else }}About{{ end }}</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <div>© {{ now.Year }} {{ $p.brand }}. {{ T "footer_rights" }}.</div>
+      <div class="footer__beian">
+        {{ with $p.icpNumber }}<a href="{{ $p.icpUrl }}" rel="noopener" target="_blank">{{ . }}</a>{{ end }}
+        {{ with $p.policeBeian }}<span>{{ . }}</span>{{ end }}
+      </div>
+    </div>
+  </div>
+</footer>

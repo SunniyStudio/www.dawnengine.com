@@ -1,0 +1,10 @@
+{{- /* Embed the core features as a bento grid inside any Markdown page.
+       Optional: {{< feature-grid limit="6" >}} */ -}}
+{{- $limit := int (.Get "limit" | default "0") -}}
+{{- with .Site.GetPage "/features" -}}
+  {{- $pages := .Pages.ByWeight -}}
+  {{- if gt $limit 0 -}}{{- $pages = first $limit $pages -}}{{- end -}}
+  <div class="bento">
+    {{ range $pages }}{{ partial "feature-card.html" . }}{{ end }}
+  </div>
+{{- end -}}

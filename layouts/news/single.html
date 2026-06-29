@@ -1,0 +1,45 @@
+{{ define "main" }}
+{{ $zh := eq .Site.Language.Lang "zh" }}
+{{ $cat := .Params.category | default "release" }}
+
+<div class="container" style="padding-top: calc(var(--nav-h) + var(--space-12));">
+  <nav class="breadcrumb" aria-label="breadcrumb">
+    <a href="{{ .Site.Home.RelPermalink }}">{{ if $zh }}首页{{ else }}Home{{ end }}</a>
+    <span class="sep">/</span>
+    <a href="{{ "news" | relLangURL }}">{{ T "nav_news" }}</a>
+    <span class="sep">/</span>
+    <span aria-current="page">{{ .Title }}</span>
+  </nav>
+
+  <div class="doc" style="padding-top:0;">
+    <article class="prose">
+      <div class="article__meta">
+        <span class="tag">{{ T (printf "news_category_%s" $cat) }}</span>
+        <time datetime="{{ .Date.Format "2006-01-02" }}">
+          {{ partial "icon.html" (dict "name" "calendar" "class" "icon--sm") }}
+          {{ .Date.Format "2006-01-02" }}
+        </time>
+        {{ with .Params.author }}<span>{{ . }}</span>{{ end }}
+        <span>{{ T "reading_time" (dict "Count" .ReadingTime) }}</span>
+      </div>
+
+      <h1 style="font-size: var(--fs-h1); margin-bottom: var(--space-8);">{{ .Title }}</h1>
+
+      {{ with .Params.cover }}
+      <div class="article__cover">
+        <img src="{{ . }}" alt="{{ $.Title }}" loading="eager" decoding="async" />
+      </div>
+      {{ end }}
+
+      {{ .Content }}
+
+      <p style="margin-top: var(--space-12);">
+        <a class="link-arrow" href="{{ "news" | relLangURL }}">
+          {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}
+          {{ if $zh }}返回新闻{{ else }}Back to news{{ end }}
+        </a>
+      </p>
+    </article>
+  </div>
+</div>
+{{ end }}

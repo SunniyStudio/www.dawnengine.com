@@ -1,0 +1,6 @@
+{{- $type := .Get "type" | default "info" -}}
+{{- $icon := cond (eq $type "warning") "shield-check" "check" -}}
+<div class="note{{ if eq $type "warning" }} note--warning{{ end }}">
+  {{ partial "icon.html" (dict "name" $icon "class" "icon--sm") }}
+  <div>{{ .Inner | .Page.RenderString }}</div>
+</div>

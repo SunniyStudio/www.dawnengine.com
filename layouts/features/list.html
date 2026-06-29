@@ -1,0 +1,15 @@
+{{ define "main" }}
+{{ partial "page-hero.html" . }}
+<div class="container container--wide section">
+  {{ with .Content }}
+  <div class="section-head" style="max-width:760px">
+    <article class="prose">{{ . }}</article>
+  </div>
+  {{ end }}
+  <div class="bento">
+    {{ range .Pages.ByWeight }}
+      {{ partial "feature-card.html" . }}
+    {{ end }}
+  </div>
+</div>
+{{ end }}

@@ -1,0 +1,62 @@
+{{ define "main" }}
+{{ $zh := eq .Site.Language.Lang "zh" }}
+{{ partial "page-hero.html" . }}
+
+<div class="container container--wide section--tight">
+  {{- /* License plans */ -}}
+  {{ with .Params.plans }}
+  <div class="plans">
+    {{ range . }}
+    <div class="plan{{ if .featured }} plan--featured{{ end }}">
+      {{ if .featured }}<span class="plan__flag">{{ if $zh }}推荐{{ else }}Popular{{ end }}</span>{{ end }}
+      <h3 class="plan__name">{{ .name }}</h3>
+      <div class="plan__price">{{ .price }}</div>
+      {{ with .audience }}<p class="plan__audience">{{ . }}</p>{{ end }}
+      {{ with .features }}
+      <ul class="plan__features" role="list">
+        {{ range . }}
+        <li>{{ partial "icon.html" (dict "name" "check" "class" "icon--sm") }}<span>{{ . }}</span></li>
+        {{ end }}
+      </ul>
+      {{ end }}
+      <a class="btn {{ if .featured }}btn--primary{{ else }}btn--secondary{{ end }}" href="{{ .ctaUrl | default "#contact" }}">
+        {{ .cta }}{{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}
+      </a>
+    </div>
+    {{ end }}
+  </div>
+  {{ end }}
+</div>
+
+<div class="container">
+  <div class="doc">
+    <div>
+      {{- /* Supported platforms (compatibility, not download) */ -}}
+      {{ with .Params.platforms }}
+      <h2 style="font-size: var(--fs-h2); margin-bottom: var(--space-6);">
+        {{ if $zh }}支持平台{{ else }}Supported Platforms{{ end }}
+      </h2>
+      <div class="builds">
+        {{ range . }}
+        <div class="build">
+          {{ partial "icon.html" (dict "name" "shield-check" "class" "icon--lg") }}
+          <div>
+            <div class="build__os">{{ .os }}</div>
+            {{ with .note }}<div class="build__note">{{ . }}</div>{{ end }}
+          </div>
+          <div class="build__status">
+            <span class="badge badge--{{ .status }}">
+              {{ if eq .status "stable" }}{{ partial "icon.html" (dict "name" "check" "class" "icon--sm") }}{{ end }}
+              {{ .status }}
+            </span>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+      {{ end }}
+
+      <article class="prose" id="contact">{{ .Content }}</article>
+    </div>
+  </div>
+</div>
+{{ end }}

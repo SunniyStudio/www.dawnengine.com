@@ -1,0 +1,17 @@
+{{- /* dict: title, lead, primary (dict label/url), secondary (dict label/url) */ -}}
+<div class="cta reveal">
+  <h2 class="cta__title">{{ .title }}</h2>
+  {{ with .lead }}<p class="cta__lead">{{ . }}</p>{{ end }}
+  <div class="cta__actions">
+    {{ with .primary }}
+      <a class="btn btn--primary" href="{{ .url }}">
+        {{ .label }}{{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}
+      </a>
+    {{ end }}
+    {{ with .secondary }}
+      <a class="btn btn--secondary" href="{{ .url }}">
+        {{ .label }}{{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}
+      </a>
+    {{ end }}
+  </div>
+</div>

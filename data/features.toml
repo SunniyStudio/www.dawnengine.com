@@ -1,0 +1,72 @@
+# 核心特性元信息（模板读取渲染首页 Bento / 特性总览）
+# icon 对应 Lucide 图标名；accent 为该特性强调色
+
+[[feature]]
+slug = "built-on-o3de"
+icon = "boxes"
+accent = "#FF7A00"
+weight = 10
+key = "feature_o3de"
+
+[[feature]]
+slug = "double-precision-rendering"
+icon = "ruler"
+accent = "#FFB347"
+weight = 20
+key = "feature_dpr"
+
+[[feature]]
+slug = "world-partition"
+icon = "layers"
+accent = "#FF7A00"
+weight = 30
+key = "feature_wp"
+
+[[feature]]
+slug = "htn-ai"
+icon = "brain-circuit"
+accent = "#FFB347"
+weight = 40
+key = "feature_htn"
+
+[[feature]]
+slug = "flight-navigation-3d"
+icon = "navigation"
+accent = "#FF7A00"
+weight = 50
+key = "feature_flight"
+
+[[feature]]
+slug = "vehicle-system"
+icon = "car-front"
+accent = "#FFB347"
+weight = 60
+key = "feature_vehicle"
+
+[[feature]]
+slug = "pixel-streaming"
+icon = "monitor-play"
+accent = "#FF7A00"
+weight = 70
+key = "feature_pixel"
+
+[[feature]]
+slug = "multi-channel-rendering"
+icon = "layout-grid"
+accent = "#FFB347"
+weight = 80
+key = "feature_mcr"
+
+[[feature]]
+slug = "cesium-geospatial"
+icon = "globe"
+accent = "#FF7A00"
+weight = 90
+key = "feature_cesium"
+
+[[feature]]
+slug = "domestic-os"
+icon = "shield-check"
+accent = "#FFB347"
+weight = 100
+key = "feature_domestic"

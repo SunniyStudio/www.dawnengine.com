@@ -1,0 +1,19 @@
+{{- /* Domestic analytics only (see docs/05). No Google Analytics.
+       Loaded async, non-blocking, production only. */ -}}
+{{- if hugo.IsProduction -}}
+  {{- with .Site.Params.baiduAnalyticsId -}}
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?{{ . }}";
+      hm.async = true;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  {{- end -}}
+  {{- with .Site.Params.umamiId -}}
+  <script defer src="/u/script.js" data-website-id="{{ . }}"></script>
+  {{- end -}}
+{{- end -}}

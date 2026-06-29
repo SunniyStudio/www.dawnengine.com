@@ -1,0 +1,32 @@
+{{ define "main" }}
+{{ partial "page-hero.html" . }}
+<div class="container container--wide section">
+  {{ with .Content }}<article class="prose" style="margin-bottom: var(--space-12);">{{ . }}</article>{{ end }}
+
+  {{ $posts := where .Pages "Kind" "page" }}
+  {{ $paginator := .Paginate ($posts.ByDate.Reverse) 9 }}
+  <div class="grid grid--3">
+    {{ range $paginator.Pages }}
+      {{ partial "news-card.html" . }}
+    {{ end }}
+  </div>
+
+  {{ if gt $paginator.TotalPages 1 }}
+  <nav class="pagination" aria-label="pagination">
+    {{ if $paginator.HasPrev }}
+      <a href="{{ $paginator.Prev.URL }}" aria-label="prev">{{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
+    {{ end }}
+    {{ range $paginator.Pagers }}
+      {{ if eq . $paginator }}
+        <span class="active">{{ .PageNumber }}</span>
+      {{ else }}
+        <a href="{{ .URL }}">{{ .PageNumber }}</a>
+      {{ end }}
+    {{ end }}
+    {{ if $paginator.HasNext }}
+      <a href="{{ $paginator.Next.URL }}" aria-label="next">{{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
+    {{ end }}
+  </nav>
+  {{ end }}
+</div>
+{{ end }}

@@ -1,0 +1,17 @@
+{{- /* Ecosystem / partner logo wall from data/partners.toml */ -}}
+{{- with hugo.Data.partners.partner -}}
+<div class="logos">
+  {{ range . }}
+    <div class="logos__item reveal" title="{{ .name }}">
+      {{- $logo := .logo -}}
+      {{- $res := "" -}}
+      {{- with $logo -}}{{- $res = resources.Get (strings.TrimPrefix "/" .) -}}{{- end -}}
+      {{- if $res -}}
+        <img src="{{ $res.RelPermalink }}" alt="{{ .name }}" loading="lazy" />
+      {{- else -}}
+        <span>{{ .name }}</span>
+      {{- end -}}
+    </div>
+  {{ end }}
+</div>
+{{- end -}}

@@ -1,0 +1,37 @@
+{{- $h := .Params.hero -}}
+{{- with $h -}}
+<section class="hero">
+  <div class="hero__media">
+    {{- if .poster -}}
+      <img src="{{ .poster }}" alt="" aria-hidden="true" fetchpriority="high" />
+    {{- end -}}
+    {{- if or .videoWebm .videoMp4 -}}
+      <video data-hero-video {{ with .poster }}poster="{{ . }}"{{ end }}
+        muted loop playsinline preload="none" aria-hidden="true">
+        {{ with .videoWebm }}<source src="{{ . }}" type="video/webm" />{{ end }}
+        {{ with .videoMp4 }}<source src="{{ . }}" type="video/mp4" />{{ end }}
+      </video>
+    {{- end -}}
+  </div>
+
+  <div class="container container--wide">
+    <div class="hero__inner reveal">
+      <p class="eyebrow">{{ if eq $.Site.Language.Lang "zh" }}破晓引擎 · DawnEngine{{ else }}DawnEngine{{ end }}</p>
+      <h1 class="hero__title">{{ .headline }}</h1>
+      {{ with .subhead }}<p class="hero__subhead">{{ . }}</p>{{ end }}
+      <div class="hero__actions">
+        {{ with .ctaPrimary }}
+          <a class="btn btn--primary" href="{{ .url }}">
+            {{ .label }}{{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}
+          </a>
+        {{ end }}
+        {{ with .ctaSecondary }}
+          <a class="btn btn--secondary" href="{{ .url }}">
+            {{ .label }}{{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}
+          </a>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{- end -}}

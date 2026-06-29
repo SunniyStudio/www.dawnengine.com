@@ -1,0 +1,113 @@
+baseURL = "https://www.dawnengine.com/"
+title = "DawnEngine"
+defaultContentLanguage = "zh"
+defaultContentLanguageInSubdir = false
+enableRobotsTXT = true
+# 需要 Git 提交历史才能工作（用于从 git 推导 lastmod）。
+# 本地无提交时设为 false 可正常运行；CI/生产环境（有提交）可置为 true。
+enableGitInfo = false
+
+# 中文断词与摘要
+hasCJKLanguage = true
+summaryLength = 60
+
+[pagination]
+  pagerSize = 9
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.highlight]
+    noClasses = false
+    style = "github-dark"
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+
+# ---------------------------------------------------------------------------
+# 多语言：中文(默认, 无前缀) + 英文(/en/)
+# ---------------------------------------------------------------------------
+[languages]
+  [languages.zh]
+    label = "简体中文"
+    locale = "zh-CN"
+    contentDir = "content/zh"
+    weight = 1
+    title = "DawnEngine 破晓引擎"
+    [languages.zh.params]
+      description = "基于 O3DE 二次开发的国产实时 3D 引擎"
+
+  [languages.en]
+    label = "English"
+    locale = "en-US"
+    contentDir = "content/en"
+    weight = 2
+    title = "DawnEngine"
+    [languages.en.params]
+      description = "A domestic real-time 3D engine built on O3DE"
+
+# ---------------------------------------------------------------------------
+# 主导航（标签文案走 i18n，便于双语）
+# ---------------------------------------------------------------------------
+[menus]
+  [[menus.main]]
+    identifier = "features"
+    pageRef = "/features"
+    weight = 10
+  [[menus.main]]
+    identifier = "ecosystem"
+    pageRef = "/ecosystem"
+    weight = 20
+  [[menus.main]]
+    identifier = "learn"
+    pageRef = "/learn"
+    weight = 30
+  [[menus.main]]
+    identifier = "community"
+    pageRef = "/community"
+    weight = 40
+  [[menus.main]]
+    identifier = "roadmap"
+    pageRef = "/roadmap"
+    weight = 50
+  [[menus.main]]
+    identifier = "news"
+    pageRef = "/news"
+    weight = 60
+  [[menus.main]]
+    identifier = "trial"
+    pageRef = "/trial"
+    weight = 70
+
+# ---------------------------------------------------------------------------
+# 站点参数
+# ---------------------------------------------------------------------------
+[params]
+  brand = "DawnEngine"
+  brandZh = "破晓引擎"
+  accent = "#FF7A00"
+  accentEnd = "#FFB347"
+  # 备案信息（上线前替换为真实备案号，见 docs/05）
+  # icpNumber = "京ICP备XXXXXXXX号-1"
+  # icpUrl = "https://beian.miit.gov.cn/"
+  policeBeian = ""
+  # 国内统计（见 docs/05，二选一/留空则不加载）
+  baiduAnalyticsId = ""
+  umamiId = ""
+  [params.social]
+    github = "https://github.com/"
+    bilibili = ""
+    weibo = ""
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+# 生产构建压缩（hugo --minify 亦可）
+[minify]
+  disableXML = false
+  [minify.tdewolff.html]
+    keepWhitespace = false

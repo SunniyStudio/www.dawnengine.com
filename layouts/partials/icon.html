@@ -1,0 +1,24 @@
+{{- /*
+  Inline SVG icon partial.
+  Usage: {{ partial "icon.html" (dict "name" "layers" "class" "icon--lg") }}
+  Icons live in assets/icons/*.svg (Lucide, plus github from Simple Icons).
+*/ -}}
+{{- $name := .name -}}
+{{- $class := .class | default "" -}}
+{{- $title := .title | default "" -}}
+{{- with resources.Get (printf "icons/%s.svg" $name) -}}
+  {{- $svg := .Content -}}
+  {{- /* strip license comment + xml declaration */ -}}
+  {{- $svg = replaceRE `<!--[\s\S]*?-->` "" $svg -}}
+  {{- /* inject class + aria into the opening <svg> tag */ -}}
+  {{- $attrs := printf `class="icon %s"` $class -}}
+  {{- if $title -}}
+    {{- $attrs = printf `%s role="img" aria-label="%s"` $attrs $title -}}
+  {{- else -}}
+    {{- $attrs = printf `%s aria-hidden="true" focusable="false"` $attrs -}}
+  {{- end -}}
+  {{- $svg = replaceRE `<svg` (printf "<svg %s" $attrs) $svg 1 -}}
+  {{- $svg | safeHTML -}}
+{{- else -}}
+  {{- warnf "icon partial: icon %q not found in assets/icons" $name -}}
+{{- end -}}

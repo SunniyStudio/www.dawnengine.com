@@ -1,0 +1,12 @@
+{{- /* Inner format: one "key | value" per line */ -}}
+<div class="specs">
+  {{- range (split (trim .Inner "\n") "\n") -}}
+    {{- $parts := split . "|" -}}
+    {{- if eq (len $parts) 2 -}}
+      <div class="specs__row">
+        <div class="specs__k">{{ trim (index $parts 0) " " }}</div>
+        <div class="specs__v">{{ trim (index $parts 1) " " }}</div>
+      </div>
+    {{- end -}}
+  {{- end -}}
+</div>

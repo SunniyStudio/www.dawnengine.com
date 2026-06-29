@@ -1,0 +1,8 @@
+{{- /* DawnEngine brand mark (white, transparent). dict: class */ -}}
+{{- $class := .class | default "" -}}
+{{- with resources.Get "icons/dawn-engine-logo.png" -}}
+  {{- $logo := .Resize "x72 webp" -}}
+  <img class="{{ $class }}" src="{{ $logo.RelPermalink }}"
+    width="{{ $logo.Width }}" height="{{ $logo.Height }}"
+    alt="{{ site.Params.brand }}" decoding="async" />
+{{- end -}}

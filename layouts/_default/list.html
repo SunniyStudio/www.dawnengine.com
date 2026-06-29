@@ -1,0 +1,28 @@
+{{ define "main" }}
+{{ partial "page-hero.html" . }}
+
+<div class="container">
+  <div class="doc">
+    <article class="prose">
+      {{ .Content }}
+    </article>
+  </div>
+
+  {{- /* Child pages as cards (for sections that have children) */ -}}
+  {{ $children := where .Pages "Kind" "page" }}
+  {{ with $children }}
+  <section class="section--tight">
+    <div class="grid grid--3">
+      {{ range . }}
+        <a class="fcard" href="{{ .RelPermalink }}">
+          <span class="fcard__icon">{{ partial "icon.html" (dict "name" (.Params.icon | default "arrow-right")) }}</span>
+          <h3 class="fcard__title">{{ .Title }}</h3>
+          <p class="fcard__desc">{{ .Description | plainify | truncate 90 }}</p>
+          <span class="fcard__arrow">{{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</span>
+        </a>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+</div>
+{{ end }}

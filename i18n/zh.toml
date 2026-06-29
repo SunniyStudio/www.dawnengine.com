@@ -1,0 +1,78 @@
+# UI 文案 · 简体中文
+
+[nav_features]
+other = "特性"
+[nav_ecosystem]
+other = "生态系统"
+[nav_learn]
+other = "学习"
+[nav_community]
+other = "社区"
+[nav_roadmap]
+other = "路线图"
+[nav_news]
+other = "新闻"
+[nav_trial]
+other = "申请试用"
+
+[cta_trial]
+other = "申请试用"
+[cta_get_license]
+other = "购买授权"
+[cta_explore_features]
+other = "查看特性"
+[cta_learn_more]
+other = "了解更多"
+[cta_get_started]
+other = "开始使用"
+[cta_contact_sales]
+other = "联系商务"
+[cta_read_more]
+other = "阅读全文"
+[cta_view_all]
+other = "查看全部"
+
+[label_features]
+other = "核心特性"
+[label_latest_news]
+other = "最新动态"
+[label_ecosystem]
+other = "生态系统"
+[label_related_features]
+other = "相关特性"
+[label_specs]
+other = "技术规格"
+[label_on_this_page]
+other = "本页目录"
+
+[news_category_release]
+other = "版本发布"
+[news_category_tutorial]
+other = "教程"
+[news_category_community]
+other = "社区"
+[news_category_event]
+other = "活动"
+
+[footer_product]
+other = "产品"
+[footer_resources]
+other = "资源"
+[footer_company]
+other = "关于我们"
+[footer_follow]
+other = "关注我们"
+[footer_rights]
+other = "保留所有权利"
+
+[lang_switch]
+other = "语言"
+
+[search_placeholder]
+other = "搜索文档…"
+
+[reading_time]
+other = "{{ .Count }} 分钟阅读"
+
+[published_on]
+other = "发布于"

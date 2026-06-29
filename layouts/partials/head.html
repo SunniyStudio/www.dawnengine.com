@@ -1,0 +1,23 @@
+{{- $isProd := hugo.IsProduction -}}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#0B0B0D" />
+
+{{ partial "seo.html" . }}
+
+{{- /* Stylesheet: SCSS -> CSS -> minify -> fingerprint (prod) */ -}}
+{{- with resources.Get "scss/main.scss" -}}
+  {{- $opts := dict "targetPath" "css/app.css" "outputStyle" (cond $isProd "compressed" "expanded") "enableSourceMap" (not $isProd) -}}
+  {{- $css := . | toCSS $opts -}}
+  {{- if $isProd -}}{{- $css = $css | fingerprint -}}{{- end -}}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}"{{ if $isProd }} integrity="{{ $css.Data.Integrity }}"{{ end }} />
+{{- end -}}
+
+{{- /* Self-hosted fonts: see docs/05. Preload here once font files exist in assets/fonts.
+       Until then the token font stacks fall back to system + CJK fonts. */ -}}
+
+<link rel="icon" href="/favicon.png" type="image/png" sizes="256x256" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="alternate" type="application/rss+xml" href="{{ "index.xml" | relLangURL }}" title="{{ .Site.Title }}" />
+
+{{ partial "analytics.html" . }}

@@ -1,0 +1,32 @@
+# 生态/合作伙伴 logo 墙（占位，上线前替换为真实合作方与授权 logo）
+# logo 使用官方 SVG，置于 static/logos/
+
+[[partner]]
+name = "银河麒麟"
+logo = "/logos/kylin.svg"
+url = "https://www.kylinos.cn/"
+category = "os"
+
+[[partner]]
+name = "统信 UOS"
+logo = "/logos/uos.svg"
+url = "https://www.uniontech.com/"
+category = "os"
+
+[[partner]]
+name = "鸿蒙 HarmonyOS"
+logo = "/logos/harmonyos.svg"
+url = "https://www.harmonyos.com/"
+category = "os"
+
+[[partner]]
+name = "O3DE Foundation"
+logo = "/logos/o3de.svg"
+url = "https://o3de.org/"
+category = "upstream"
+
+[[partner]]
+name = "Cesium"
+logo = "/logos/cesium.svg"
+url = "https://cesium.com/"
+category = "tech"

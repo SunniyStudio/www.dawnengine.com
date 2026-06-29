@@ -1,0 +1,83 @@
+// Design tokens — see docs/03-design-system.md (3.2–3.5)
+
+:root {
+  // Surfaces
+  --c-bg: #0b0b0d;
+  --c-surface: #121214;
+  --c-surface-2: #1a1b1f;
+  --c-border: #26272c;
+  --c-border-strong: #34363d;
+
+  // Text
+  --c-text: #f5f6f8;
+  --c-text-muted: #9aa0a8;
+  --c-text-faint: #6b7178;
+
+  // Brand accent — Dawn gradient
+  --c-accent: #ff7a00;
+  --c-accent-2: #ffb347;
+  --c-accent-grad: linear-gradient(135deg, #ff7a00 0%, #ffb347 100%);
+  --c-accent-ink: #0b0b0d;
+
+  // Semantic
+  --c-success: #22c55e;
+  --c-warning: #f59e0b;
+  --c-danger: #ef4444;
+  --c-info: #38bdf8;
+
+  // Typography
+  --font-display: "Outfit", "Noto Sans SC", system-ui, "PingFang SC",
+    "Microsoft YaHei", sans-serif;
+  --font-body: "Inter", "Noto Sans SC", system-ui, "PingFang SC",
+    "Microsoft YaHei", sans-serif;
+  --font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, "SFMono-Regular",
+    Menlo, Consolas, monospace;
+
+  --fs-display: clamp(2.5rem, 5vw, 4.5rem);
+  --fs-h1: clamp(2rem, 3.5vw, 3rem);
+  --fs-h2: clamp(1.5rem, 2.5vw, 2.25rem);
+  --fs-h3: 1.5rem;
+  --fs-body: 1.0625rem;
+  --fs-small: 0.875rem;
+  --lh-tight: 1.1;
+  --lh-body: 1.7;
+
+  // Spacing (8px base)
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  // Layout
+  --container: 1200px;
+  --container-wide: 1440px;
+  --gutter: 24px;
+  --nav-h: 72px;
+
+  --radius-sm: 6px;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  // Shadows, glass, motion
+  --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.35);
+  --shadow-glow: 0 0 40px rgba(255, 122, 0, 0.25);
+  --glass: rgba(20, 21, 25, 0.72);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 220ms;
+
+  --z-nav: 100;
+  --z-drawer: 200;
+}
+
+// Breakpoints (for reference in @media via Sass)
+$bp-sm: 375px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1440px;

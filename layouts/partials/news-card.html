@@ -1,0 +1,17 @@
+{{- /* Context: a news Page */ -}}
+{{- $cat := .Params.category | default "release" -}}
+<a class="ncard reveal" href="{{ .RelPermalink }}">
+  <div class="ncard__media">
+    {{- with .Params.cover -}}
+      <img src="{{ . }}" alt="" loading="lazy" decoding="async" />
+    {{- end -}}
+  </div>
+  <div class="ncard__body">
+    <div class="ncard__meta">
+      <span class="tag">{{ T (printf "news_category_%s" $cat) }}</span>
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+    </div>
+    <h3 class="ncard__title">{{ .Title }}</h3>
+    <p class="ncard__excerpt">{{ .Description | default .Summary | plainify | truncate 100 }}</p>
+  </div>
+</a>

@@ -1,0 +1,44 @@
+{{- $title := .Title -}}
+{{- $siteTitle := .Site.Title -}}
+{{- if .IsHome -}}
+  <title>{{ $siteTitle }}{{ with .Site.Params.brandZh }} {{ . }}{{ end }}</title>
+{{- else -}}
+  <title>{{ $title }} · {{ $siteTitle }}</title>
+{{- end -}}
+
+{{- $desc := .Description | default .Summary | default .Site.Params.description -}}
+<meta name="description" content="{{ $desc | plainify | truncate 160 }}" />
+
+{{- /* Canonical + hreflang */ -}}
+<link rel="canonical" href="{{ .Permalink }}" />
+{{ range .AllTranslations }}
+<link rel="alternate" hreflang="{{ .Site.Language.Lang }}" href="{{ .Permalink }}" />
+{{ end }}
+{{ with .Translations }}{{ end }}
+
+{{- /* Open Graph */ -}}
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+<meta property="og:title" content="{{ $title | default $siteTitle }}" />
+<meta property="og:description" content="{{ $desc | plainify | truncate 160 }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:site_name" content="{{ $siteTitle }}" />
+<meta property="og:locale" content="{{ .Site.Language.Locale }}" />
+{{- with (or .Params.cover .Params.heroImage .Params.hero.poster) }}
+<meta property="og:image" content="{{ . | absURL }}" />
+{{- end }}
+<meta name="twitter:card" content="summary_large_image" />
+
+{{- /* JSON-LD */ -}}
+{{ if .IsHome }}
+<script type="application/ld+json">
+{{ dict
+  "@context" "https://schema.org"
+  "@type" "SoftwareApplication"
+  "name" .Site.Title
+  "applicationCategory" "DeveloperApplication"
+  "operatingSystem" "Windows, Kylin, UOS, HarmonyOS"
+  "description" $desc
+  "url" .Site.BaseURL
+  | jsonify (dict "indent" "  ") | safeJS }}
+</script>
+{{ end }}

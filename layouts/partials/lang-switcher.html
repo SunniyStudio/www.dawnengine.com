@@ -1,0 +1,31 @@
+{{- /* Language switcher: prefer current page's translations (translationKey),
+       fall back to each site's home. See docs/04. */ -}}
+{{- $cur := . -}}
+{{- if gt (len hugo.Sites) 1 -}}
+<div class="lang" data-lang>
+  <button class="lang__btn" data-lang-btn aria-haspopup="true" aria-expanded="false"
+    aria-label="{{ T "lang_switch" }}">
+    {{ partial "icon.html" (dict "name" "languages" "class" "icon--sm") }}
+    <span>{{ .Site.Language.Label }}</span>
+    {{ partial "icon.html" (dict "name" "chevron-down" "class" "icon--sm") }}
+  </button>
+  <div class="lang__menu" data-lang-menu role="menu">
+    <a href="{{ .RelPermalink }}" hreflang="{{ .Site.Language.Lang }}" aria-current="true">
+      {{ .Site.Language.Label }}
+    </a>
+    {{- if .Translations -}}
+      {{- range .Translations -}}
+        <a href="{{ .RelPermalink }}" hreflang="{{ .Site.Language.Lang }}">
+          {{ .Site.Language.Label }}
+        </a>
+      {{- end -}}
+    {{- else -}}
+      {{- range hugo.Sites -}}
+        {{- if ne .Language.Lang $cur.Site.Language.Lang -}}
+          <a href="{{ .Home.RelPermalink }}" hreflang="{{ .Language.Lang }}">{{ .Language.Label }}</a>
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  </div>
+</div>
+{{- end -}}

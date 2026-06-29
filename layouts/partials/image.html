@@ -1,0 +1,29 @@
+{{- /*
+  Responsive image helper.
+  dict: src (string, /static or page resource path), alt, class, sizes, eager (bool)
+  If the path resolves to a processable resource under assets/ it emits WebP + srcset;
+  otherwise falls back to a plain <img> (e.g. files in static/).
+*/ -}}
+{{- $src := .src -}}
+{{- $alt := .alt | default "" -}}
+{{- $class := .class | default "" -}}
+{{- $sizes := .sizes | default "(max-width: 768px) 100vw, 50vw" -}}
+{{- $loading := cond (.eager | default false) "eager" "lazy" -}}
+{{- $res := "" -}}
+{{- with $src -}}
+  {{- $clean := strings.TrimPrefix "/" . -}}
+  {{- $res = resources.Get $clean -}}
+{{- end -}}
+{{- if $res -}}
+  {{- $w := $res.Width -}}
+  {{- $img := $res -}}
+  {{- $webp := $res.Process "webp q82" -}}
+  <img src="{{ $img.RelPermalink }}"
+    {{ with $webp }}srcset="{{ .RelPermalink }}"{{ end }}
+    width="{{ $res.Width }}" height="{{ $res.Height }}"
+    alt="{{ $alt }}" loading="{{ $loading }}" decoding="async"
+    {{ with $class }}class="{{ . }}"{{ end }} sizes="{{ $sizes }}" />
+{{- else -}}
+  <img src="{{ $src }}" alt="{{ $alt }}" loading="{{ $loading }}" decoding="async"
+    {{ with $class }}class="{{ . }}"{{ end }} />
+{{- end -}}

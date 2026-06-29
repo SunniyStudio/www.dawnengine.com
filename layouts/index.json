@@ -1,0 +1,14 @@
+{{- /* Lightweight search index (per language). Consume with Pagefind/Lunr/Fuse.
+       See docs/04 (front-end search). */ -}}
+{{- $pages := where .Site.RegularPages "Kind" "page" -}}
+{{- $index := slice -}}
+{{- range $pages -}}
+  {{- $index = $index | append (dict
+      "title" .Title
+      "url" .RelPermalink
+      "section" .Section
+      "summary" (.Description | default .Summary | plainify | truncate 160)
+      "tags" .Params.tags
+  ) -}}
+{{- end -}}
+{{- $index | jsonify (dict "indent" "  ") -}}

@@ -1,0 +1,108 @@
+{{ define "main" }}
+{{ $zh := eq .Site.Language.Lang "zh" }}
+
+{{ partial "hero.html" . }}
+
+{{- /* Stat strip */ -}}
+{{ with .Params.stats }}
+<section class="stats">
+  <div class="container container--wide">
+    <div class="stats__grid">
+      {{ range . }}
+        <div class="stats__item">
+          <div class="stats__value">{{ .value }}</div>
+          <div class="stats__label">{{ .label }}</div>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{- /* Core features — bento grid */ -}}
+<section class="section">
+  <div class="container container--wide">
+    <div class="section-head section-head--center">
+      <p class="eyebrow">{{ T "label_features" }}</p>
+      <h2>{{ if $zh }}面向真实世界的完整能力{{ else }}Complete Capabilities for the Real World{{ end }}</h2>
+      <p>{{ if $zh }}在 O3DE 开放底座之上，围绕大世界、高精度、可解释 AI 与自主可控的系统性增强。{{ else }}Systematic enhancements on the open O3DE foundation — large worlds, high precision, explainable AI, and self-control.{{ end }}</p>
+    </div>
+    {{ partial "bento.html" . }}
+  </div>
+</section>
+
+{{- /* Highlighted feature blocks (alternating) */ -}}
+{{ with .Site.GetPage "/features" }}
+<section class="section section--tight">
+  <div class="container">
+    {{ range $i, $f := first 4 .Pages.ByWeight }}
+      <div class="fblock reveal{{ if modBool $i 2 }}{{ else }} fblock--reverse{{ end }}">
+        <div class="fblock__media">
+          {{ with $f.Params.heroImage }}
+            <img src="{{ . }}" alt="{{ $f.Title }}" loading="lazy" decoding="async" />
+          {{ else }}
+            <span class="fblock__icon">{{ partial "icon.html" (dict "name" ($f.Params.icon | default "boxes")) }}</span>
+          {{ end }}
+        </div>
+        <div class="fblock__body">
+          <p class="eyebrow">{{ with $f.Params.tagline }}{{ . }}{{ end }}</p>
+          <h3 class="fblock__title">{{ $f.Title }}</h3>
+          <p class="fblock__desc">{{ $f.Description | plainify }}</p>
+          <div class="fblock__cta">
+            <a class="link-arrow" href="{{ $f.RelPermalink }}">
+              {{ T "cta_learn_more" }}{{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}
+            </a>
+          </div>
+        </div>
+      </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{- /* Ecosystem logo wall */ -}}
+<section class="section">
+  <div class="container container--wide">
+    <div class="section-head section-head--center">
+      <p class="eyebrow">{{ T "label_ecosystem" }}</p>
+      <h2>{{ if $zh }}开放协作，自主可控{{ else }}Open Collaboration, Self-Controlled{{ end }}</h2>
+    </div>
+    {{ partial "logo-wall.html" . }}
+  </div>
+</section>
+
+{{- /* Latest news */ -}}
+{{ with .Site.GetPage "/news" }}
+{{ $posts := first 3 (where .Pages "Type" "news") }}
+{{ with $posts }}
+<section class="section section--tight">
+  <div class="container container--wide">
+    <div class="section-head">
+      <p class="eyebrow">{{ T "label_latest_news" }}</p>
+      <h2>{{ if $zh }}最新动态{{ else }}Latest News{{ end }}</h2>
+    </div>
+    <div class="grid grid--3">
+      {{ range . }}{{ partial "news-card.html" . }}{{ end }}
+    </div>
+    <div class="section-foot">
+      <a class="link-arrow" href="{{ "news" | relLangURL }}">
+        {{ T "cta_view_all" }}{{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}
+      </a>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+
+{{- /* CTA */ -}}
+<section class="section">
+  <div class="container container--wide">
+    {{ partial "cta.html" (dict
+      "title" (cond $zh "构建你的下一个世界" "Build Your Next World")
+      "lead" (cond $zh "从城市级数字孪生到星球级仿真，立即申请试用，开启你的项目。" "From city-scale digital twins to planet-scale simulation, request a trial and start your project.")
+      "primary" (dict "label" (T "cta_trial") "url" ("trial" | relLangURL))
+      "secondary" (dict "label" (T "cta_explore_features") "url" ("features" | relLangURL))
+    ) }}
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,65 @@
+{{ define "main" }}
+{{ $zh := eq .Site.Language.Lang "zh" }}
+{{ $accent := .Params.accent | default "#FF7A00" }}
+
+<header class="page-hero{{ if .Params.heroImage }} page-hero--image{{ end }}" style="--c-accent: {{ $accent }};">
+  {{ with .Params.heroImage }}
+  <div class="page-hero__bg"><img src="{{ . }}" alt="" aria-hidden="true" loading="eager" decoding="async" /></div>
+  {{ end }}
+  <div class="container container--wide">
+    <nav class="breadcrumb" aria-label="breadcrumb">
+      <a href="{{ .Site.Home.RelPermalink }}">{{ if $zh }}首页{{ else }}Home{{ end }}</a>
+      <span class="sep">/</span>
+      <a href="{{ "features" | relLangURL }}">{{ T "nav_features" }}</a>
+      <span class="sep">/</span>
+      <span aria-current="page">{{ .Title }}</span>
+    </nav>
+    <p class="eyebrow">
+      {{ partial "icon.html" (dict "name" (.Params.icon | default "boxes") "class" "icon--sm") }}
+      {{ with .Params.tagline }}{{ . }}{{ end }}
+    </p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="page-hero__lead">{{ . }}</p>{{ end }}
+  </div>
+</header>
+
+<div class="container">
+  <div class="doc doc--toc">
+    <article class="prose">
+      {{ .Content }}
+    </article>
+
+    <aside class="toc">
+      {{ with .Params.specs }}
+      <div class="aside-card" style="margin-bottom: var(--space-6);">
+        <h3>{{ T "label_specs" }}</h3>
+        <div class="specs" style="margin:0;">
+          {{ range . }}
+          <div class="specs__row">
+            <div class="specs__k">{{ .k }}</div>
+            <div class="specs__v">{{ .v }}</div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+
+      {{ with .Params.related }}
+      <div class="aside-card">
+        <h3>{{ T "label_related_features" }}</h3>
+        <ul role="list">
+          {{ range . }}
+            {{ with $.Site.GetPage (printf "/features/%s" .) }}
+              <a href="{{ .RelPermalink }}">
+                {{ partial "icon.html" (dict "name" (.Params.icon | default "arrow-right") "class" "icon--sm") }}
+                {{ .Title }}
+              </a>
+            {{ end }}
+          {{ end }}
+        </ul>
+      </div>
+      {{ end }}
+    </aside>
+  </div>
+</div>
+{{ end }}

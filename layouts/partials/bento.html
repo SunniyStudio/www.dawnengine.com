@@ -1,0 +1,12 @@
+{{- /* Context: the site root page. Renders the features section as a bento grid. */ -}}
+{{- $features := "" -}}
+{{- with .Site.GetPage "/features" -}}
+  {{- $features = .Pages.ByWeight -}}
+{{- end -}}
+{{- with $features -}}
+<div class="bento">
+  {{ range . }}
+    {{ partial "feature-card.html" . }}
+  {{ end }}
+</div>
+{{- end -}}

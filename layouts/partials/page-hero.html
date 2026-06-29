@@ -1,0 +1,11 @@
+{{- /* Interior page header. Context: Page */ -}}
+<header class="page-hero{{ if .Params.heroImage }} page-hero--image{{ end }}">
+  {{ with .Params.heroImage }}
+  <div class="page-hero__bg"><img src="{{ . }}" alt="" aria-hidden="true" loading="eager" decoding="async" /></div>
+  {{ end }}
+  <div class="container container--wide">
+    {{ if .Params.tagline }}<p class="eyebrow">{{ .Params.tagline }}</p>{{ end }}
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="page-hero__lead">{{ . }}</p>{{ end }}
+  </div>
+</header>

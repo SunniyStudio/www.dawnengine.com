@@ -1,0 +1,233 @@
+// Bento grid (homepage features)
+.bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gutter);
+
+  @media (max-width: $bp-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: $bp-md) {
+    grid-template-columns: 1fr;
+  }
+
+  // first two cards span 2 cols for visual rhythm
+  > :nth-child(1),
+  > :nth-child(2) {
+    grid-column: span 2;
+
+    @media (max-width: $bp-md) {
+      grid-column: auto;
+    }
+  }
+}
+
+// Feature card
+.fcard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-8);
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    border-color var(--dur) var(--ease),
+    background var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      120% 80% at 0% 0%,
+      rgba(255, 122, 0, 0.1),
+      transparent 55%
+    );
+    opacity: 0;
+    transition: opacity var(--dur) var(--ease);
+  }
+
+  &:hover {
+    border-color: var(--c-border-strong);
+    box-shadow: var(--shadow-card);
+
+    &::before {
+      opacity: 1;
+    }
+
+    .fcard__arrow {
+      transform: translateX(3px);
+      color: var(--c-accent-2);
+    }
+  }
+
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius);
+    background: var(--c-surface-2);
+    border: 1px solid var(--c-border);
+    color: var(--c-accent-2);
+
+    .icon {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  &__title {
+    font-size: 1.25rem;
+  }
+
+  &__desc {
+    color: var(--c-text-muted);
+    font-size: 0.95rem;
+  }
+
+  &__arrow {
+    margin-top: auto;
+    color: var(--c-text-faint);
+    transition:
+      transform var(--dur) var(--ease),
+      color var(--dur) var(--ease);
+
+    .icon {
+      width: 1.125rem;
+      height: 1.125rem;
+    }
+  }
+}
+
+// News card
+.ncard {
+  display: flex;
+  flex-direction: column;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+
+  &:hover {
+    border-color: var(--c-border-strong);
+    box-shadow: var(--shadow-card);
+
+    .ncard__title {
+      color: var(--c-accent-2);
+    }
+  }
+
+  &__media {
+    aspect-ratio: 16 / 9;
+    background: var(--c-surface-2);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__body {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    flex: 1;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--fs-small);
+    color: var(--c-text-muted);
+  }
+
+  &__title {
+    font-size: 1.2rem;
+    transition: color var(--dur) var(--ease);
+  }
+
+  &__excerpt {
+    color: var(--c-text-muted);
+    font-size: 0.95rem;
+  }
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 122, 0, 0.12);
+  border: 1px solid rgba(255, 122, 0, 0.3);
+  color: var(--c-accent-2);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+// Logo wall
+.logos {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--gutter);
+  align-items: center;
+
+  @media (max-width: $bp-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: $bp-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-6);
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    min-height: 96px;
+    color: var(--c-text-muted);
+    font-family: var(--font-display);
+    font-weight: 600;
+    transition:
+      color var(--dur) var(--ease),
+      border-color var(--dur) var(--ease);
+
+    img {
+      max-height: 40px;
+      width: auto;
+      filter: grayscale(1) brightness(1.6);
+      opacity: 0.7;
+      transition:
+        filter var(--dur) var(--ease),
+        opacity var(--dur) var(--ease);
+    }
+
+    &:hover {
+      color: var(--c-text);
+      border-color: var(--c-border-strong);
+
+      img {
+        filter: none;
+        opacity: 1;
+      }
+    }
+  }
+}

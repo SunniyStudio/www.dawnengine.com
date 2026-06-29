@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Locale | default .Site.Language.Lang }}" dir="ltr">
+  <head>
+    {{ partial "head.html" . }}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{{ if eq .Site.Language.Lang "zh" }}跳到主要内容{{ else }}Skip to content{{ end }}</a>
+    {{ partial "header.html" . }}
+    <main id="main">
+      {{ block "main" . }}{{ end }}
+    </main>
+    {{ partial "footer.html" . }}
+    {{ with resources.Get "js/main.js" }}
+      {{ $js := . | js.Build (dict "minify" hugo.IsProduction "target" "es2018") }}
+      {{ if hugo.IsProduction }}{{ $js = $js | fingerprint }}{{ end }}
+      <script type="module" src="{{ $js.RelPermalink }}"{{ if hugo.IsProduction }} integrity="{{ $js.Data.Integrity }}"{{ end }}></script>
+    {{ end }}
+  </body>
+</html>

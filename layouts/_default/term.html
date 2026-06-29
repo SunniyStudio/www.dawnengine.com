@@ -1,0 +1,23 @@
+{{ define "main" }}
+<header class="page-hero">
+  <div class="container container--wide">
+    <p class="eyebrow">{{ .Data.Singular }}</p>
+    <h1>{{ .Title }}</h1>
+  </div>
+</header>
+<div class="container container--wide section--tight">
+  <div class="grid grid--3">
+    {{ range .Pages }}
+      {{ if eq .Type "news" }}
+        {{ partial "news-card.html" . }}
+      {{ else }}
+        <a class="fcard" href="{{ .RelPermalink }}">
+          <h3 class="fcard__title">{{ .Title }}</h3>
+          <p class="fcard__desc">{{ .Description | plainify | truncate 90 }}</p>
+          <span class="fcard__arrow">{{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</span>
+        </a>
+      {{ end }}
+    {{ end }}
+  </div>
+</div>
+{{ end }}

@@ -1,0 +1,57 @@
+{{- $home := .Site.Home.RelPermalink -}}
+<header class="nav" data-nav>
+  <div class="container container--wide nav__inner">
+    <a class="nav__brand" href="{{ $home }}" aria-label="{{ .Site.Params.brand }}">
+      {{ partial "logo.html" (dict "class" "nav__logo") }}
+      <span class="nav__wordmark">Dawn<span>Engine</span></span>
+    </a>
+
+    <nav class="nav__links" aria-label="{{ if eq .Site.Language.Lang "zh" }}主导航{{ else }}Primary{{ end }}">
+      {{ range .Site.Menus.main }}
+        {{- if ne .Identifier "trial" -}}
+          {{- $active := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) -}}
+          <a class="nav__link" href="{{ .URL }}"{{ if $active }} aria-current="page"{{ end }}>
+            {{ T (printf "nav_%s" .Identifier) }}
+          </a>
+        {{- end -}}
+      {{ end }}
+    </nav>
+
+    <div class="nav__actions">
+      {{ partial "lang-switcher.html" . }}
+      {{ with index (where .Site.Menus.main "Identifier" "trial") 0 }}
+        <a class="btn btn--primary btn--sm hide-md" href="{{ .URL }}">
+          {{ T "nav_trial" }}
+          {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}
+        </a>
+      {{ end }}
+      <button class="nav__toggle" data-drawer-open aria-expanded="false" aria-controls="drawer"
+        aria-label="{{ if eq .Site.Language.Lang "zh" }}打开菜单{{ else }}Open menu{{ end }}">
+        {{ partial "icon.html" (dict "name" "menu") }}
+      </button>
+    </div>
+  </div>
+</header>
+
+{{- /* Mobile drawer */ -}}
+<div class="drawer" id="drawer" data-drawer aria-hidden="true">
+  <button class="drawer__close" data-drawer-close
+    aria-label="{{ if eq .Site.Language.Lang "zh" }}关闭菜单{{ else }}Close menu{{ end }}">
+    {{ partial "icon.html" (dict "name" "x") }}
+  </button>
+  <nav aria-label="{{ if eq .Site.Language.Lang "zh" }}移动导航{{ else }}Mobile{{ end }}">
+    {{ range .Site.Menus.main }}
+      {{- if ne .Identifier "trial" -}}
+        <a class="drawer__link" href="{{ .URL }}">{{ T (printf "nav_%s" .Identifier) }}</a>
+      {{- end -}}
+    {{ end }}
+  </nav>
+  <div class="drawer__actions">
+    {{ with index (where .Site.Menus.main "Identifier" "trial") 0 }}
+      <a class="btn btn--primary" href="{{ .URL }}">
+        {{ T "nav_trial" }}
+        {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}
+      </a>
+    {{ end }}
+  </div>
+</div>

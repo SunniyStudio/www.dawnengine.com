@@ -1,0 +1,18 @@
+// DawnEngine theme — entry
+// See docs/03-design-system.md
+// NOTE: uses @import for LibSass (Hugo Extended built-in) compatibility.
+// Token Sass vars ($bp-*) defined in _tokens become global after first import.
+
+@import "tokens";
+@import "reset";
+@import "typography";
+@import "layout";
+@import "utilities";
+
+@import "components/buttons";
+@import "components/navbar";
+@import "components/hero";
+@import "components/cards";
+@import "components/sections";
+@import "components/footer";
+@import "components/interior";
