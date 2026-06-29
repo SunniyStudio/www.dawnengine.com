@@ -41,6 +41,11 @@
         <h4>{{ T "footer_company" }}</h4>
         <ul role="list">
           <li><a href="{{ "about" | relLangURL }}">{{ if $zh }}关于我们{{ else }}About{{ end }}</a></li>
+          {{ with $p.contact.business }}<li><a href="mailto:{{ . }}">{{ if $zh }}商务合作{{ else }}Business{{ end }}</a></li>{{ end }}
+          {{ with $p.contact.careers }}<li><a href="mailto:{{ . }}">{{ if $zh }}招聘投递{{ else }}Careers{{ end }}</a></li>{{ end }}
+          {{ with $p.contact.press }}<li><a href="mailto:{{ . }}">{{ if $zh }}媒体联系{{ else }}Press{{ end }}</a></li>{{ end }}
+          {{ $addr := cond $zh $p.contact.addressZh $p.contact.addressEn }}
+          {{ with $addr }}<li class="footer__addr">{{ . }}</li>{{ end }}
         </ul>
       </div>
     </div>

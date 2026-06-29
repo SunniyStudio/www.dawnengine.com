@@ -33,7 +33,7 @@ summaryLength = 60
     locale = "zh-CN"
     contentDir = "content/zh"
     weight = 1
-    title = "DawnEngine 破晓引擎"
+    title = "DawnEngine"
     [languages.zh.params]
       description = "基于 O3DE 二次开发的国产实时 3D 引擎"
 
@@ -98,6 +98,12 @@ summaryLength = 60
     github = ""
     bilibili = ""
     weibo = ""
+  [params.contact]
+    business = "business@sunniystudio.com"
+    careers = "careers@sunniystudio.com"
+    press = "press@sunniystudio.com"
+    addressZh = "中国 山东省 青岛市"
+    addressEn = "Qingdao, Shandong, China"
 
 [taxonomies]
   category = "categories"

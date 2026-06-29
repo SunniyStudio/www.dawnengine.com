@@ -95,6 +95,12 @@
     }
   }
 
+  &__addr {
+    color: var(--c-text-faint);
+    font-size: 0.85rem;
+    margin-top: var(--space-2);
+  }
+
   &__bottom {
     margin-top: var(--space-12);
     padding-top: var(--space-6);

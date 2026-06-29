@@ -24,11 +24,11 @@ DawnEngine（破晓引擎）是一款基于开源引擎 [O3DE](/features/built-o
 
 ## 联系我们
 
-- **商务与合作**：欢迎在硬件适配、行业方案、渠道层面与我们合作。
-- **媒体与社区**：交流渠道见[社区](/community/)。
+| 类别 | 联系方式 |
+| --- | --- |
+| 商务合作 | [business@sunniystudio.com](mailto:business@sunniystudio.com) |
+| 招聘投递 | [careers@sunniystudio.com](mailto:careers@sunniystudio.com) |
+| 媒体联系 | [press@sunniystudio.com](mailto:press@sunniystudio.com) |
+| 地址 | 中国 山东省 青岛市 |
 
-> 具体联系方式（邮箱、合作表单）将在上线时于本页提供。
-
-## 合规信息
-
-本网站面向国内用户，已按要求进行 ICP 备案，备案信息见页脚。
+申请试用与授权咨询请发送邮件至**商务合作**邮箱，或前往[申请试用](/trial/)页面。日常交流见[社区](/community/)。

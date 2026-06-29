@@ -71,4 +71,4 @@ DawnEngine is a **commercial engine** and is not available as a public free down
 
 ## Contact Us
 
-To request a trial or ask about license pricing, reach out via the sales contact on the [About](/en/about/) page. We will follow up on trial and licensing options.
+To request a trial or ask about license pricing, email [business@sunniystudio.com](mailto:business@sunniystudio.com) (Business), or see the [About](/en/about/) page for more contact options. We will follow up on trial and licensing options.

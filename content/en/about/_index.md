@@ -24,11 +24,11 @@ To let teams embrace the vitality of the open-source ecosystem while meeting rea
 
 ## Contact Us
 
-- **Business & partnerships**: collaborate with us on hardware adaptation, industry solutions, and channels.
-- **Media & community**: see the [community](/en/community/) for channels.
+| Category | Contact |
+| --- | --- |
+| Business | [business@sunniystudio.com](mailto:business@sunniystudio.com) |
+| Careers | [careers@sunniystudio.com](mailto:careers@sunniystudio.com) |
+| Press | [press@sunniystudio.com](mailto:press@sunniystudio.com) |
+| Address | Qingdao, Shandong, China |
 
-> Specific contact details (email, partnership form) will be provided here at launch.
-
-## Compliance
-
-This site serves users in China and is ICP-registered as required; registration details appear in the footer.
+For trial requests and licensing, email our **Business** address or visit the [Request Trial](/en/trial/) page. For day-to-day discussion, see the [community](/en/community/).
