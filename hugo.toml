@@ -95,7 +95,7 @@ summaryLength = 60
   baiduAnalyticsId = ""
   umamiId = ""
   [params.social]
-    github = "https://github.com/"
+    github = ""
     bilibili = ""
     weibo = ""
 
