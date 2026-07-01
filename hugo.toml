@@ -63,6 +63,12 @@ summaryLength = 60
     pageRef = "/learn"
     weight = 30
   [[menus.main]]
+    identifier = "docs"
+    url = "https://docs.dawnengine.com"
+    weight = 35
+    [menus.main.params]
+      external = true
+  [[menus.main]]
     identifier = "community"
     pageRef = "/community"
     weight = 40
@@ -74,6 +80,12 @@ summaryLength = 60
     identifier = "news"
     pageRef = "/news"
     weight = 60
+  [[menus.main]]
+    identifier = "gems"
+    url = "https://gems.dawnengine.com"
+    weight = 65
+    [menus.main.params]
+      external = true
   [[menus.main]]
     identifier = "trial"
     pageRef = "/trial"

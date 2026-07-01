@@ -6,12 +6,16 @@ other = "特性"
 other = "生态系统"
 [nav_learn]
 other = "学习"
+[nav_docs]
+other = "文档"
 [nav_community]
 other = "社区"
 [nav_roadmap]
 other = "路线图"
 [nav_news]
 other = "新闻"
+[nav_gems]
+other = "Gem 商城"
 [nav_trial]
 other = "申请试用"
 

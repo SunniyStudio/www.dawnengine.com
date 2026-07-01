@@ -10,8 +10,12 @@
       {{ range .Site.Menus.main }}
         {{- if ne .Identifier "trial" -}}
           {{- $active := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) -}}
-          <a class="nav__link" href="{{ .URL }}"{{ if $active }} aria-current="page"{{ end }}>
+          {{- $external := or (.Params.external) (hasPrefix .URL "http") -}}
+          <a class="nav__link{{ if $external }} nav__link--external{{ end }}" href="{{ .URL }}"
+            {{- if $active }} aria-current="page"{{ end }}
+            {{- if $external }} target="_blank" rel="noopener"{{ end }}>
             {{ T (printf "nav_%s" .Identifier) }}
+            {{- if $external }}{{ partial "icon.html" (dict "name" "arrow-up-right" "class" "icon--sm nav__link-ext") }}{{ end -}}
           </a>
         {{- end -}}
       {{ end }}
@@ -42,7 +46,12 @@
   <nav aria-label="{{ if eq .Site.Language.Lang "zh" }}移动导航{{ else }}Mobile{{ end }}">
     {{ range .Site.Menus.main }}
       {{- if ne .Identifier "trial" -}}
-        <a class="drawer__link" href="{{ .URL }}">{{ T (printf "nav_%s" .Identifier) }}</a>
+        {{- $external := or (.Params.external) (hasPrefix .URL "http") -}}
+        <a class="drawer__link{{ if $external }} drawer__link--external{{ end }}" href="{{ .URL }}"
+          {{- if $external }} target="_blank" rel="noopener"{{ end }}>
+          {{ T (printf "nav_%s" .Identifier) }}
+          {{- if $external }}{{ partial "icon.html" (dict "name" "arrow-up-right" "class" "icon--sm") }}{{ end -}}
+        </a>
       {{- end -}}
     {{ end }}
   </nav>

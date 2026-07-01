@@ -74,6 +74,21 @@
     &[aria-current="page"] {
       color: var(--c-text);
     }
+
+    &--external {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+  }
+
+  &__link-ext {
+    opacity: 0.6;
+    transition: opacity var(--dur) var(--ease);
+
+    .nav__link:hover & {
+      opacity: 1;
+    }
   }
 
   &__actions {
@@ -189,6 +204,17 @@
     font-weight: 600;
     color: var(--c-text);
     border-bottom: 1px solid var(--c-border);
+
+    &--external {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+
+      .icon {
+        opacity: 0.6;
+      }
+    }
   }
 
   &__actions {

@@ -6,12 +6,16 @@ other = "Features"
 other = "Ecosystem"
 [nav_learn]
 other = "Learn"
+[nav_docs]
+other = "Docs"
 [nav_community]
 other = "Community"
 [nav_roadmap]
 other = "Roadmap"
 [nav_news]
 other = "News"
+[nav_gems]
+other = "Gem Store"
 [nav_trial]
 other = "Request Trial"
 
